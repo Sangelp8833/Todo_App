@@ -1,10 +1,18 @@
-defmodule TodoAppWeb.TaskView do
-  use TodoAppWeb, :view
+<h1>Show Task</h1>
 
-  defp now() do
-    NaiveDateTime.utc_now() |> NaiveDateTime.to_string()
-  end
+<ul>
 
-  defp is_done(true), do: "It's done"
-  defp is_done(false), do: "Missing task"
-end
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+
+  <li>
+    <strong>Done:</strong>
+    <%= @task.done %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span> |
+<span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>
