@@ -1,19 +1,5 @@
-<.form let={f} for={@changeset} action={@action}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+<h1>Edit Task</h1>
 
-  <%= label f, :description %>
-  <%= text_input f, :description %>
-  <%= error_tag f, :description %>
+<%= render "form.html", Map.put(assigns, :action, Routes.task_path(@conn, :update, @task)) %>
 
-  <%= label f, :done %>
-  <%= checkbox f, :done %>
-  <%= error_tag f, :done %>
-
-  <div>
-    <%= submit "Save" %>
-  </div>
-</.form>
+<span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>
