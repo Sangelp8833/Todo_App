@@ -22,9 +22,10 @@ defmodule TodoAppWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", TodoAppWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", TodoAppWeb do
+    pipe_through :api
+    get "/tasks", API.TaskController, :index
+  end
 
   # Enables LiveDashboard only for development
   #
