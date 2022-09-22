@@ -1,9 +1,12 @@
-defmodule TodoApp.Repo.Migrations.AddExpirationToTask do
+defmodule TodoApp.Repo.Migrations.CreateTasks do
   use Ecto.Migration
 
   def change do
-    alter table(:tasks) do
-      add(:expiration, :naive_datetime)
+    create table(:tasks) do
+      add :description, :string
+      add :done, :boolean, default: false, null: false
+
+      timestamps()
     end
   end
 end

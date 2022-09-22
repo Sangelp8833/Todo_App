@@ -20,7 +20,7 @@ config :todo_app, TodoApp.Repo,
 # you can enable the server option below.
 config :todo_app, TodoAppWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "BRU2FIYgSpdyN5epHR/Cp4OIIJJOGfJgSWmRKEnneAz+XNY9gu131h2Y7knMmuB/",
+  secret_key_base: "cO4zBU8yOtTFZzqmws8lM8W7bauG00xJzYj+FzpaRtVHVEf+cGmytlhmhzTkKT16",
   server: false
 
 # In test we don't send emails.

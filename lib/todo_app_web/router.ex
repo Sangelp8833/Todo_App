@@ -19,15 +19,27 @@ defmodule TodoAppWeb.Router do
 
   scope "/", TodoAppWeb do
     pipe_through :browser
+
     get "/", PageController, :index
     resources "/tasks", TaskController
     resources "/lists", ListController
+    live "/simple", SimpleLive
   end
+
+  live_session :default, on_mount: TodoAppWeb.SessionHook do
+    scope "/", TodoAppWeb do
+      pipe_through [:browser, :require_authenticated_user]
+
+      live "/lists_tasks", ListTaskLive
+    end
+  end
+
   # Other scopes may use custom stacks.
   scope "/api", TodoAppWeb do
     pipe_through :api
     get "/tasks", API.TaskController, :index
   end
+
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put
@@ -37,11 +49,14 @@ defmodule TodoAppWeb.Router do
   # as long as you are also using SSL (which you should anyway).
   if Mix.env() in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
+
     scope "/" do
       pipe_through :browser
+
       live_dashboard "/dashboard", metrics: TodoAppWeb.Telemetry
     end
   end
+
   # Enables the Swoosh mailbox preview in development.
   #
   # Note that preview only shows emails that were sent by the same
@@ -49,6 +64,7 @@ defmodule TodoAppWeb.Router do
   if Mix.env() == :dev do
     scope "/dev" do
       pipe_through :browser
+
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end

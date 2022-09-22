@@ -15,7 +15,7 @@ config :todo_app, TodoAppWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: TodoAppWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: TodoApp.PubSub,
-  live_view: [signing_salt: "CKpRZZr/"]
+  live_view: [signing_salt: "JHiXreH/"]
 
 # Configures the mailer
 #
